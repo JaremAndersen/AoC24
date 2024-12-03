@@ -27,22 +27,23 @@ defmodule AdventOfCode.Day02 do
         check_report(rest, true, dampener, left)
 
       dampener > 0 ->
-       drop_left =
-        if prev == nil do
-          rest
-        else
-          [prev | rest]
-        end
+        drop_left =
+          if prev == nil do
+            rest
+          else
+            [prev | rest]
+          end
 
-        drop_right = [left | Enum.drop(rest,1)]
+        drop_right = [left | Enum.drop(rest, 1)]
 
-        asc = cond do
-          rest == Enum.sort(rest, :asc) -> true
-          rest == Enum.sort(rest, :desc) -> false
-          true -> nil
-        end
+        asc =
+          cond do
+            rest == Enum.sort(rest, :asc) -> true
+            rest == Enum.sort(rest, :desc) -> false
+            true -> nil
+          end
 
-        check_report(drop_left, asc, dampener - 1 ) or check_report(drop_right, asc, dampener - 1)
+        check_report(drop_left, asc, dampener - 1) or check_report(drop_right, asc, dampener - 1)
 
       true ->
         false
